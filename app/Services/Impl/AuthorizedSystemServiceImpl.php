@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Impl;
 
+use App\Jobs\NotificarCorreoBienvenida;
 use App\Models\AuthorizedSystem;
 use App\Services\AuthorizedSystemService;
 class AuthorizedSystemServiceImpl implements AuthorizedSystemService{
@@ -14,7 +15,14 @@ class AuthorizedSystemServiceImpl implements AuthorizedSystemService{
         } else {
             $data['allowed_ips'] = null;
         }
-
-        return AuthorizedSystem::create($data);
+        $authorizeSystem = new AuthorizedSystem();
+        $authorizeSystem->name = $data["name"];
+        $authorizeSystem->is_active = $data["is_active"];
+        $authorizeSystem->rate_limit = $data["rate_limit"];
+        $authorizeSystem->allowed_ips = $data["allowed_ips"];
+        $authorizeSystem->save();
+        \Illuminate\Support\Facades\Log::info("Llegó al servicio, intentando despachar el job para el ID: " . $authorizeSystem->id);
+        NotificarCorreoBienvenida::dispatch($authorizeSystem)->onConnection('database')->onQueue('emails');
+        return $authorizeSystem;
     }
 }

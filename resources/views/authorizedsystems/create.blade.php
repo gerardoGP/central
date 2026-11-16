@@ -34,15 +34,19 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-12">
                                 <label for="name" class="form-label fw-semibold">Nombre del Sistema <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Ej. CRM Ventas" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="" required>
                                 <div class="form-text text-muted" style="font-size: 0.75rem;">
-                                <i class="bi bi-info-circle me-1"></i> Nombre del sistema.
-                            </div>
+                                    <i class="bi bi-info-circle me-1"></i> Ejm: Sistema Tramite Documentario.
+                                </div>
                             </div>
                             <div class="col-md-12">
-                                <label for="identifier" class="form-label fw-semibold">Identificador Único <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('identifier') is-invalid @enderror" id="identifier" name="identifier" value="{{ old('identifier') }}" placeholder="ej. crm_ventas_prod" required>
-                                <div class="form-text text-muted" style="font-size: 0.75rem;">Usado para autenticación de API.</div>
+                                <label for="name" class="form-label fw-semibold">Client ID <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Ej. CRM Ventas" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="name" class="form-label fw-semibold">Client Secret <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Ej. CRM Ventas" required>
                             </div>
                         </div>
 
@@ -53,12 +57,6 @@
                                 <div class="input-group">
                                     <input type="number" class="form-control @error('rate_limit') is-invalid @enderror" id="rate_limit" name="rate_limit" value="{{ old('rate_limit', 60) }}" min="1">
                                     <span class="input-group-text bg-light">req / min</span>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-md-5">
-                                <div class="form-check form-switch fs-5">
-                                    <input class="form-check-input cursor-pointer" type="checkbox" role="switch" id="is_active" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}>
-                                    <label class="form-check-label fs-6 mt-1 ms-2" for="is_active">Sistema Activo</label>
                                 </div>
                             </div>
                         </div>

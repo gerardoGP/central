@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AuthorizedSystem;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAuthorizedSystemRequest;
 use App\Services\AuthorizedSystemService;
@@ -18,7 +19,12 @@ class AuthorizedSystemController extends Controller
         // Pasamos los datos validados al servicio
         $this->service->createSystem($request->validated());
 
-        return redirect()->route('authorized_systems.index')
+        return redirect()->route('authorizedsystem.index')
                          ->with('success', 'Sistema registrado exitosamente.');
+    }
+    public function index(){
+        $systems = AuthorizedSystem::latest()->paginate(10);
+
+        return view('authorizedsystems.index', compact('systems'));
     }
 }

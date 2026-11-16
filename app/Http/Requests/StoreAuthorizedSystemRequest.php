@@ -32,7 +32,7 @@ class StoreAuthorizedSystemRequest extends FormRequest
     {
         return [
             'name'        => 'required|string|max:255',
-            'identifier'  => 'required|string|max:255|unique:authorized_systems,identifier',
+            // 'identifier'  => 'required|string|max:255|unique:authorized_systems,identifier',
             'is_active'   => 'boolean',
             'rate_limit'  => 'required|integer|min:1',
             'allowed_ips' => 'nullable|string', 
